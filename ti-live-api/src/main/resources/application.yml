@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: ti-live-api
+  profiles:
+    active: dev
+  config:
+    import: ""
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    compatibility-verifier:
+      enabled: false
+    nacos:
+      config:
+        import-check:
+          enabled: false
+        server-addr: nacos:8848
+        namespace: dev
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        enabled: true
+      discovery:
+        server-addr: nacos:8848
+        namespace: dev
+        group: DEFAULT_GROUP
+        enabled: true
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+    qos-enable: false
+    logger: slf4j
+  registry:
+    address: nacos://nacos:8848
+  consumer:
+    check: false
+    timeout: 3000
+    retries: 0
+  scan:
+    base-packages: com.ti
+
+logging:
+  level:
+    root: info
+    com.ti: debug
+    org.apache.dubbo: info
+    com.alibaba.nacos: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"

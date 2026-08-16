@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.ti</groupId>
+    <artifactId>ti_live_app</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <artifactId>id-generate</artifactId>
+  <packaging>pom</packaging>
+
+  <name>id-generate</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <cosid.version>1.20.5</cosid.version>
+  </properties>
+
+  <modules>
+    <module>id-generate-interface</module>
+    <module>id-generate-provider</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>me.ahoo.cosid</groupId>
+        <artifactId>cosid-spring-boot-starter</artifactId>
+        <version>${cosid.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>me.ahoo.cosid</groupId>
+        <artifactId>cosid-jdbc</artifactId>
+        <version>${cosid.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>me.ahoo.cosid</groupId>
+        <artifactId>cosid-spring-redis</artifactId>
+        <version>${cosid.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

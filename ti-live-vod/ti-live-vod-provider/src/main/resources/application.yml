@@ -1,0 +1,61 @@
+server:
+  port: 8087
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: ti-live-vod-provider
+  datasource:
+    url: jdbc:mysql://host.docker.internal:3306/ti_live?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: ${MYSQL_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: redis
+    port: 6379
+    password: 
+    database: 0
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+        namespace: dev
+        group: DEFAULT_GROUP
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.ti.live.vod.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+# Dubbo 配置
+dubbo:
+  application:
+    name: ${spring.application.name}
+    qos-enable: false
+    logger: slf4j
+  registry:
+    address: nacos://nacos:8848
+    parameters:
+      namespace: dev
+      group: DUBBO_GROUP
+  protocol:
+    name: dubbo
+    port: 20885
+  consumer:
+    check: false
+    timeout: 3000
+    retries: 0
+  scan:
+    base-packages: com.ti
+
+# 日志配置
+logging:
+  level:
+    root: info
+    com.ti: debug
+    org.apache.dubbo: info
+    com.alibaba.nacos: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"

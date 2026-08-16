@@ -1,0 +1,28 @@
+# Maven 构建产物
+**/target/
+
+# 日志
+logs/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Claude / 本地工具
+.claude/
+.agents/
+
+# 临时与系统文件
+tmp/
+D:/
+*.tmp
+.DS_Store
+
+# 数据库脚本
+user.sql
+
+# 环境变量（含敏感配置）
+.env
+.env.*

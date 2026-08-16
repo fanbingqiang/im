@@ -1,0 +1,70 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: ti-live-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+        namespace: dev
+        group: DEFAULT_GROUP
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: ti-live-api
+          uri: lb://ti-live-api
+          predicates:
+            - Path=/api/**
+        - id: id-generate-provider
+          uri: lb://id-generate-provider
+          predicates:
+            - Path=/id/**
+        - id: ti-live-im-ws
+          uri: ws://nacos:8085
+          predicates:
+            - Path=/ws/**
+  main:
+    web-application-type: reactive
+
+# 白名单配置（不需要认证的路径）
+tlivegateway:
+  white-list:
+    - /api/user/login
+    - /api/user/mobileLogin
+    - /api/user/sendSMSCode
+    - /api/id/**
+    - /actuator/**
+    - /health
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    root: info
+    com.ti: debug
+    org.springframework.cloud.gateway: debug
+    org.apache.dubbo: info
+
+# Dubbo 配置
+dubbo:
+  application:
+    name: ${spring.application.name}
+    qos-enable: false
+    logger: slf4j
+  registry:
+    address: nacos://nacos:8848
+  consumer:
+    check: false
+    timeout: 3000
+    retries: 0
+  scan:
+    base-packages: com.ti.gateway
