@@ -8,8 +8,8 @@ spring:
     name: ti-live-vod-provider
   datasource:
     url: jdbc:mysql://host.docker.internal:3306/ti_live?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: ${MYSQL_PASSWORD}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:123456}
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     host: redis

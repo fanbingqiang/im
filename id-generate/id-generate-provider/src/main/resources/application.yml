@@ -21,8 +21,8 @@ spring:
         enabled: true
   datasource:
     url: jdbc:mysql://host.docker.internal:3306/id_generator?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    username: root
-    password: ${MYSQL_PASSWORD}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 20

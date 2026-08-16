@@ -31,8 +31,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://host.docker.internal:3306/ti_live_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: ${MYSQL_PASSWORD}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
     druid:
       initial-size: 5
       min-idle: 5
@@ -44,9 +44,9 @@ cloopen:
   sms:
     server-ip: app.cloopen.com
     server-port: "8883"
-    account-sid: YOUR_ACCOUNT_SID
-    account-token: YOUR_ACCOUNT_TOKEN
-    app-id: YOUR_APP_ID
+    account-sid: ${CLOOPEN_ACCOUNT_SID:YOUR_ACCOUNT_SID}
+    account-token: ${CLOOPEN_ACCOUNT_TOKEN:YOUR_ACCOUNT_TOKEN}
+    app-id: ${CLOOPEN_APP_ID:YOUR_APP_ID}
     template-id: "1"
 
 # MyBatis-Plus 配置
