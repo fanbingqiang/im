@@ -8,10 +8,14 @@
     </parent>
 
     <artifactId>ti-live-user</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>ti-live-user</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>ti-live-user-interface</module>
+        <module>ti-live-user-provider</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

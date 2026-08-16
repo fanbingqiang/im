@@ -1,4 +1,4 @@
-package com.ti.com.ti.user.dti;
+package com.ti.user.dto;
 
 import java.io.Serializable;
 

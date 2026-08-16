@@ -2,16 +2,43 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.1.6</version>
+    <relativePath/>
+  </parent>
+
   <groupId>com.ti</groupId>
   <artifactId>ti_live_app</artifactId>
   <version>1.0</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>ti_live_app</name>
   <url>http://maven.apache.org</url>
+    <modules>
+        <module>ti-live-common</module>
+        <module>ti-live-user</module>
+        <module>ti-live-api</module>
+        <module>ti-live-starter</module>
+        <module>ti-live-gateway</module>
+        <module>ti-live-im</module>
+        <module>ti-live-order</module>
+        <module>id-generate</module>
+        <module>ti-live-live</module>
+        <module>ti-live-vod</module>
+    </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>17</java.version>
+    <dubbo.version>3.2.11</dubbo.version>
+    <nacos.version>2.2.4</nacos.version>
+    <spring-cloud.version>2022.0.4</spring-cloud.version>
+    <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
+    <mybatis-plus.version>3.5.7</mybatis-plus.version>
+    <mysql.version>8.0.33</mysql.version>
+    <cloopen.version>1.0.4</cloopen.version>
   </properties>
 
   <dependencies>
@@ -22,4 +49,57 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Dubbo -->
+      <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo-bom</artifactId>
+        <version>${dubbo.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- Nacos -->
+      <dependency>
+        <groupId>com.alibaba.nacos</groupId>
+        <artifactId>nacos-client</artifactId>
+        <version>${nacos.version}</version>
+      </dependency>
+      <!-- Spring Cloud Alibaba -->
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- MyBatis-Plus -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus.version}</version>
+      </dependency>
+      <!-- MySQL -->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
+      <!-- 容联云 -->
+      <dependency>
+        <groupId>com.cloopen</groupId>
+        <artifactId>java-sms-sdk</artifactId>
+        <version>${cloopen.version}</version>
+      </dependency>
+      <!-- Spring Cloud Gateway BOM -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

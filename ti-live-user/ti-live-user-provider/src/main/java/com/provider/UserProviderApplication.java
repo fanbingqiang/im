@@ -1,6 +1,6 @@
-package com.ti;
+package com.provider;
 
-import com.ti.config.EnableDubboClient;
+import com.provider.config.EnableDubboClient;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
